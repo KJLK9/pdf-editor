@@ -1,5 +1,4 @@
-export function ggID() {
-  let id = 0;
+export function ggID(id = 0) {
   return function genId() {
     return id++;
   };

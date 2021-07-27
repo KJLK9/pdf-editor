@@ -1,17 +1,22 @@
+let asset_base = window.drupalSettings.asset_base;
+
 const scripts = [
   {
     name: 'pdfjsLib',
-    src: 'https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.min.js',
+    // src: 'https://unpkg.com/pdfjs-dist@2.3.200/build/pdf.min.js',
+    src: (asset_base + '/pdf.min.js'),
   },
   {
     name: 'PDFLib',
-    src: 'https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js',
+    // src: 'https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js',
+    src: (asset_base + '/pdf-lib.min.js'),
   },
+  { name: 'makeTextPDF', src: (asset_base + '/makeTextPDF.js') },
   {
     name: 'download',
-    src: 'https://unpkg.com/downloadjs@1.4.7',
+    // src: 'https://unpkg.com/downloadjs@1.4.7',
+    src: (asset_base + '/download.js'),
   },
-  { name: 'makeTextPDF', src: '/makeTextPDF.js' },
 ];
 
 const assets = {};

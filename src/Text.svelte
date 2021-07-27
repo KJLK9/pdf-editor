@@ -11,6 +11,7 @@
   export let x;
   export let y;
   export let fontFamily;
+  let asset_base = window.drupalSettings.asset_base;
   export let pageScale = 1;
   const Families = Object.keys(Fonts);
   const dispatch = createEventDispatcher();
@@ -164,68 +165,6 @@
 </style>
 
 <svelte:options immutable={true} />
-{#if operation}
-  <Toolbar>
-    <div
-      use:tapout
-      on:tapout={onBlurTool}
-      on:mousedown={onFocusTool}
-      on:touchstart={onFocusTool}
-      class="h-full flex justify-center items-center bg-gray-300 border-b
-      border-gray-400">
-      <div class="mr-2 flex items-center">
-        <img src="/line_height.svg" class="w-6 mr-2" alt="Line height" />
-        <input
-          type="number"
-          min="1"
-          max="10"
-          step="0.1"
-          class="h-6 w-12 text-center flex-shrink-0 rounded-sm"
-          bind:value={_lineHeight} />
-      </div>
-      <div class="mr-2 flex items-center">
-        <img src="/text.svg" class="w-6 mr-2" alt="Font size" />
-        <input
-          type="number"
-          min="12"
-          max="120"
-          step="1"
-          class="h-6 w-12 text-center flex-shrink-0 rounded-sm"
-          bind:value={_size} />
-      </div>
-      <div class="mr-2 flex items-center">
-        <img src="/text-family.svg" class="w-4 mr-2" alt="Font family" />
-        <div class="relative w-32 md:w-40">
-          <select
-            bind:value={_fontFamily}
-            on:change={onChangeFont}
-            class="font-family">
-            {#each Families as family}
-              <option value={family}>{family}</option>
-            {/each}
-          </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex
-            items-center px-2 text-gray-700">
-            <svg
-              class="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20">
-              <path
-                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757
-                6.586 4.343 8z" />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div
-        on:click={onDelete}
-        class="w-5 h-5 rounded-full bg-white cursor-pointer">
-        <img class="w-full h-full" src="/delete.svg" alt="delete object" />
-      </div>
-    </div>
-  </Toolbar>
-{/if}
 <div
   use:tapout
   on:tapout={onBlur}
@@ -241,6 +180,12 @@
     class:cursor-grab={!operation}
     class:cursor-grabbing={operation === 'move'}
     class:editing={['edit', 'tool'].includes(operation)} />
+  <div
+          on:click={onDelete}
+          class="absolute right-0 left-100 top-0 w-12 h-12 m-auto rounded-full bg-white
+    cursor-pointer transform -translate-y-1/2 -translate-x-1/2 md:scale-25">
+    <img class="w-full h-full" src="{asset_base}/delete.svg" alt="delete object" />
+  </div>
   <div
     bind:this={editable}
     on:focus={onFocus}

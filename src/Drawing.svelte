@@ -9,6 +9,7 @@
   export let y;
   export let pageScale = 1;
   export let path;
+  export let parent = null;
   const dispatch = createEventDispatcher();
   let startX;
   let startY;
@@ -19,6 +20,9 @@
   let dw = 0;
   let direction = "";
   const ratio = originWidth / originHeight;
+  let asset_base = window.drupalSettings.asset_base;
+  let signature_access = window.drupalSettings.signature_access;
+
   async function render() {
     svg.setAttribute("viewBox", `0 0 ${originWidth} ${originHeight}`);
   }
@@ -92,30 +96,34 @@
   class="absolute left-0 top-0 select-none"
   style="width: {width + dw}px; height: {(width + dw) / ratio}px; transform:
   translate({x + dx}px, {y + dy}px);">
-  <div
-    use:pannable
-    on:panstart={handlePanStart}
-    on:panmove={handlePanMove}
-    on:panend={handlePanEnd}
-    class="absolute w-full h-full cursor-grab border border-gray-400
-    border-dashed"
-    class:cursor-grabbing={operation === 'move'}
-    class:operation>
+  {#if signature_access }
     <div
-      data-direction="left-top"
-      class="absolute left-0 top-0 w-10 h-10 bg-green-400 rounded-full
-      cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25" />
+      use:pannable
+      on:panstart={handlePanStart}
+      on:panmove={handlePanMove}
+      on:panend={handlePanEnd}
+      class="absolute w-full h-full cursor-grab border border-gray-400
+      border-dashed"
+      class:cursor-grabbing={operation === 'move'}
+      class:operation>
+        <div
+          data-direction="left-top"
+          class="absolute left-0 top-0 w-10 h-10 bg-green-400 rounded-full
+          cursor-nwse-resize transform -translate-x-1/2 -translate-y-1/2 md:scale-25" />
+        <div
+          data-direction="right-bottom"
+          class="absolute right-0 bottom-0 w-10 h-10 bg-green-400 rounded-full
+          cursor-nwse-resize transform translate-x-1/2 translate-y-1/2 md:scale-25" />
+      </div>
+    {/if}
+    {#if signature_access || parent !== null }
     <div
-      data-direction="right-bottom"
-      class="absolute right-0 bottom-0 w-10 h-10 bg-green-400 rounded-full
-      cursor-nwse-resize transform translate-x-1/2 translate-y-1/2 md:scale-25" />
-  </div>
-  <div
-    on:click={onDelete}
-    class="absolute left-0 top-0 right-0 w-12 h-12 m-auto rounded-full bg-white
-    cursor-pointer transform -translate-y-1/2 md:scale-25">
-    <img class="w-full h-full" src="/delete.svg" alt="delete object" />
-  </div>
+      on:click={onDelete}
+      class="absolute left-0 top-0 right-0 w-12 h-12 m-auto rounded-full bg-white
+      cursor-pointer transform -translate-y-1/2 md:scale-25">
+      <img class="w-full h-full" src="{asset_base}/delete.svg" alt="delete object" />
+    </div>
+  {/if}
   <svg bind:this={svg} width="100%" height="100%">
     <path
       stroke-width="5"

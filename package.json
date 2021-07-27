@@ -1,13 +1,35 @@
 {
-  "name": "pdf-editor",
-  "version": "1.0.0",
-  "author": "ShizukuIchi <shizukuichi@gmail.com>",
-  "homepage": "https://pdf-editor.now.sh",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "start": "sirv public"
+  "_from": "github:ShizukuIchi/pdf-editor",
+  "_id": "pdf-editor@1.0.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/pdf-editor",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "ShizukuIchi/pdf-editor",
+    "rawSpec": "ShizukuIchi/pdf-editor",
+    "saveSpec": "github:ShizukuIchi/pdf-editor",
+    "fetchSpec": null,
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "github:ShizukuIchi/pdf-editor#2cf85774298d363bda063431ea534fea6f441b58",
+  "_spec": "ShizukuIchi/pdf-editor",
+  "_where": "/Users/klaasjanloosman/Code/weening/weening-adviesgroep/web/themes/custom/mu_theme",
+  "author": {
+    "name": "ShizukuIchi",
+    "email": "shizukuichi@gmail.com"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "sirv-cli": "^0.4.4"
+  },
+  "deprecated": false,
+  "description": "No install. No server. ¯\\\\\\_(ツ)\\_/¯ https://pdf-editor.now.sh ![It just works!](https://i.imgur.com/m3weLXQ.gif)",
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
     "@rollup/plugin-commonjs": "^11.0.0",
@@ -24,7 +46,12 @@
     "svelte-preprocess": "^3.7.4",
     "tailwindcss": "^1.3.5"
   },
-  "dependencies": {
-    "sirv-cli": "^0.4.4"
-  }
+  "homepage": "https://pdf-editor.now.sh",
+  "name": "pdf-editor",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public"
+  },
+  "version": "1.0.0"
 }

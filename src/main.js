@@ -3,7 +3,7 @@ import { getAsset } from './utils/prepareAssets.js';
 
 getAsset('pdfjsLib');
 const app = new App({
-  target: document.body,
+  target: document.getElementById('pdf_editor'),
 });
 
 export default app;
